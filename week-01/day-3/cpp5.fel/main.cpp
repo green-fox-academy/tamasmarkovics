@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 int main() {
 
@@ -34,12 +35,51 @@ int main() {
                 std::cout << "Too bigg" << std::endl;
                 break;
         }
+    std::cout<<std::endl;
 
     // Write a program that asks for two numbers and prints the bigger one
     int fir=0;
     int secc=0;
     std::cout<<"Two num pls ty :)"<<std::endl;
     std::cin>>fir>>secc;
+    if (fir>secc){
+        std::cout << fir<< " is bigger"<< std::endl;
+    }else std::cout << secc<< " is bigger"<< std::endl;
+    std::cout<<std::endl;
+
+
+
+    // Write a program that asks for two numbers
+    int boiz=0;
+    int girls=0;
+    std::cout<< "How many girls and boiz go to the party?"<<std::endl;
+    std::cin>> girls>>boiz;
+    // The first number represents the number of girls that comes to a party, the
+    // second the boys
+    // It should print: The party is excellent!
+    // If the the number of girls and boys are equal and 20 or more people are coming to the party
+    if (girls==0) {
+        std::cout<<"Sausage party!"<<std::endl;
+    }else if (girls==boiz&&(girls+boiz)>20){
+            std::cout<<"Excellencio!"<<std::endl;
+
+    }
+    // It should print: Quite cool party!
+    // If there are 20 or more people coming to the party but the girl - boy ratio is not 1-1
+    //
+    else if ((girls+boiz)>20){
+        std::cout<<"Quite cool party!"<<std::endl;
+    }else std::cout<<"Meh party :("<<std::endl;
+    // It should print: Average party...
+    // If there are less people coming than 20
+    //
+    // It should print: Sausage party
+    // If no girls are coming, regardless the count of the people
+
+    std::cout<<girls<<std::endl<<boiz<<std::endl;
+
+
+
 
     return 0;
 }
