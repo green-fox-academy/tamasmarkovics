@@ -2,7 +2,7 @@
 #include <string>
 
 int main() {
-
+    /*
     //iWontCheat
     for (int i=0; i<10;i++) {
         std::cout << "I won't cheat on the exam!" << std::endl;
@@ -84,7 +84,7 @@ int main() {
         }
         std::cout << std::endl;
     }
-
+    */
     int pyr = 0;
     std::cout << "Give a number for my pyramid" << std::endl;
     std::cin >> pyr;
@@ -92,7 +92,7 @@ int main() {
         for(int p1 = pyr-p; p1>=0; p1--){
             std::cout << " ";
         }
-        for(int p2 = 0; p2<2*p; p2++){
+        for(int p2 = 0; p2<2*p-1; p2++){
             std::cout << "*";
         }
         std::cout << std::endl;
