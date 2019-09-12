@@ -65,8 +65,8 @@ int main() {
             std::cout << std::endl;
         } else {
             std::cout << "%";
-            for (int oszlop = 1; oszlop <= diag - 2; oszlop++) {
-                if (sor == oszlop + 1){
+            for (int oszlop = 2; oszlop <= diag - 1; oszlop++) {
+                if (sor == oszlop){
                     std::cout << "%";
                 } else std::cout << " ";
             }
