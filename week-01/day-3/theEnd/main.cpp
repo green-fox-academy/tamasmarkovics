@@ -4,12 +4,12 @@
 int main() {
     /*
     //iWontCheat
-    for (int i=0; i<10;i++) {
+    for (int i = 0; i < 10; i++) {
         std::cout << "I won't cheat on the exam!" << std::endl;
     }
     std::cout << std::endl;
     //printEvent
-    for (int i=0; i<=10;i+=2) {
+    for (int i = 0; i <= 10; i += 2) {
         std::cout << i <<std::endl;
     }
     std::cout << std::endl;
@@ -38,7 +38,7 @@ int main() {
     int bg = 1;
     std::cout << "Pls gimme 2 numbers, make the second one bigger." << std::endl;
     std::cin >> smll >> bg;
-    if (smll>bg){
+    if (smll > bg){
         std::cout << "Learn how to read you moron" << std::endl;
     } else {
         for (smll; smll <= bg; smll++) {
@@ -78,8 +78,8 @@ int main() {
     int tri = 0;
     std::cout << "Give a number for my triangle" << std::endl;
     std::cin >> tri;
-    for(int t = 1; t<=tri; t++){
-        for(int t2 = 1; t2<=t; t2++){
+    for(int t = 1; t <= tri; t++){
+        for(int t2 = 1; t2 <= t; t2++){
             std::cout << "*";
         }
         std::cout << std::endl;
@@ -88,11 +88,11 @@ int main() {
     int pyr = 0;
     std::cout << "Give a number for my pyramid" << std::endl;
     std::cin >> pyr;
-    for(int p = 0; p<=pyr; p++){
-        for(int p1 = pyr-p; p1>=0; p1--){
+    for(int p = 0; p <= pyr; p++){
+        for(int p1 = pyr - p; p1 >= 0; p1--){
             std::cout << " ";
         }
-        for(int p2 = 0; p2<2*p-1; p2++){
+        for(int p2 = 0; p2 < 2 * p - 1; p2++){
             std::cout << "*";
         }
         std::cout << std::endl;
