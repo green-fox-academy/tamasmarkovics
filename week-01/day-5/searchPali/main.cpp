@@ -4,42 +4,76 @@ using namespace std;
 
 void searchPali(string search);
 
+
+
+//RUNS 4EVER WATCH OUT!
+//hot mess RN
+//acces violation error, INDEXING PROBLEM???!!!???
+
+
+
 int main() {
     //Create a function named search palindrome following your current language's style guide. It should take a string,
     //search for palindromes that at least 3 characters long and return a list with the found palindromes.
 
-    string toSearch = "dasd dsafads fadscs adasdasdasda csdwedw sacs xsa adsda adsas asdas asdda asdasdsa";
+    string toSearch = "dasd dsafads fadscs adasdasdasda adda cddccsdwedw sacs xsa adsda adsas asdas asdda asdasdsa";
 
     searchPali(toSearch);
     return 0;
 }
 
 void searchPali(string search){
-    /*
-     <<<<thinking>>>
-    beginning has to be the end too -> can just search for it?...
-                                              what if the next one is? -> change to double digit search?
-    consider it done... if a match is found check for pali
-    if it fails i can go on to the next match
-                      -> can only work if the first match is halfway, i can skip there! or can i? wink wink
-    other shortcuts?
-        START WITH 2 CHARS
-            -> works with finding 3 long palis
-                    -> BACKWARDS!!!!
-        skip starting with spaces, maybe check it after
-
-    a long pali will have A LOOOOT of subPalis, how do i deal with that? what are the odds i guess?
-
-    OOOOOR
-    possibly matching longer lines every time? sounds like more runtime
-    */
     int size = search.length();
-    int found = 0;
-    // FOR to go thru the string
-    string temp = search.substr(2,2);
-    swap(temp[0], temp[1]);
-    //for? while? to find every single instance *** possible shortcut with skipping searches.
-    found=search.find(temp, 2);
-    cout << temp << " found at: " << found << '\n';
+    string listOfPalis[size];
+    int count = 0;//No. of palis. Bad name, should change
+
+    //checks every char
+    for(int j = 1; j < size-1; ++j) {
+
+
+        //inside, so it starts with true every cycle, and doesnt stop fors
+        bool paliQuestionmark = true;
+
+        //compares the next one --->> finding ABBA
+        if (search[j] == search[j+1]){
+
+            //supposed to stop if they arent the same, work in progresss...............
+            for (int i = 0; (i < 2 * j) && paliQuestionmark == true; ++i) {
+
+
+                if (search[j-i]==search[j+1+i]){
+                    paliQuestionmark = true;
+                    listOfPalis[count] = search.substr(j-1-i, (2*i+2));  //example showed every subPali of a longer Pali written out too, sound easier, but whatever
+                    count++;
+                } else{
+                    paliQuestionmark = false;
+                };
+
+
+
+
+            }
+        }
+        //this is supposed to find the odd length palis ---->> finding ABA
+        else {
+
+
+            for (int k = 0; (k < 2 * j) && paliQuestionmark == true; ++k) {
+                if (search[j - k] == search[j + k]) {
+                    paliQuestionmark = true;
+                    listOfPalis[count] = search.substr(j - k, (2 * k + 1));
+                    count++;
+                } else {
+                    paliQuestionmark = false;
+
+
+
+                };
+            }
+        };
+    }
+    for (int l = 0; l < count; ++l) {
+        cout << listOfPalis[l] << endl;
+    }
 }
 
