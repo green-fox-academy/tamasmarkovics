@@ -4,7 +4,9 @@ using namespace std;
 void searchPali(string search);
 
 int main() {
-    string toSearch = "12345677654321";
+    string toSearch;
+    cout << "Give me a string to search in plx:" << endl;
+    getline(cin, toSearch);
     searchPali(toSearch);
     return 0;
 }
