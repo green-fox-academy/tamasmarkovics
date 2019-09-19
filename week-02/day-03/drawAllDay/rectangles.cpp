@@ -5,16 +5,15 @@
 #include "draw.h"
 
 
+//4 IS NOT ENOUGH :(
+
 void draw(SDL_Renderer* gRenderer) {
     srand (time(NULL));
-        for(int i = 0; i < 10000; i++) {
-            //choose color
-            SDL_SetRenderDrawColor(gRenderer, rand() % 255, rand() % 255, rand() % 255, 255);
-            //create a rectangle
-            SDL_Rect fillRect = {rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, rand() % (SCREEN_WIDTH - fillRect.x),
-                                 rand() % (SCREEN_HEIGHT - fillRect.y)};
-            //draw rectangle
 
-            SDL_RenderFillRect(gRenderer, &fillRect);
-        }
+    for(int i = 0; i < 1000; i++) {
+        SDL_SetRenderDrawColor(gRenderer, rand() % 255, rand() % 255, rand() % 255, 255);
+        SDL_Rect fillRect = {rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, rand() % (SCREEN_WIDTH - fillRect.x) / 2,
+                             rand() % (SCREEN_HEIGHT - fillRect.y) / 2};
+        SDL_RenderFillRect(gRenderer, &fillRect);
+    }
 }
