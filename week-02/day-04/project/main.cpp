@@ -74,14 +74,10 @@ int main(int argc, char *args[]) {
             if (e.type == SDL_QUIT) {
                 quit = true;
             }
-            if (e.type == SDL_KEYDOWN) {
-                quit = true;
-            }
-
         }
 
         //Clear screen
-        SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 0xFF);
+        SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
         SDL_RenderClear(gRenderer);
 
         draw(gRenderer);

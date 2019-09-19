@@ -1,12 +1,11 @@
 cmake_minimum_required(VERSION 3.14)
-project(drawAllDay)
+project(project)
 
 set(CMAKE_CXX_STANDARD 14)
 
-
 set(SDL2_ROOT_PATH C:/SDL2-2.0.8)
 
-set(EXECUTABLES "draw;liner;colorbox;diagonal;tocenter;rectangles;justForFun;checker;toTheCircus;last;night")
+set(EXECUTABLES "draw;firstPart2;triangles;hexa;betterHexa;first")
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 IF(WIN32)
