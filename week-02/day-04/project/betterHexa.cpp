@@ -1,6 +1,9 @@
 #include "draw.h"
 #include <math.h>
 
+//LESS OUTDATED, STILL GARBAGE
+
+
 void betterHexa(SDL_Renderer* gRenderer, int startX, int startY){
 
     SDL_RenderDrawLine(gRenderer, startX, startY, startX + 60, startY);
