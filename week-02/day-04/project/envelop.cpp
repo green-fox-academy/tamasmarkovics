@@ -1,12 +1,15 @@
 #include "draw.h"
 
 
+//KINDA SORTA AIGHT, COULD BE PRETTIER
 
 void draw(SDL_Renderer* gRenderer) {
     SDL_SetRenderDrawColor(gRenderer, 0xFF /*R*/, 0 /*G*/, 0 /*B*/, 0xFF /*A*/);
     double a = 0;
     double b = 0;
     double n = 40;
+
+
     for (int i = 0; i <= n; i += 1) {
         a = (SCREEN_WIDTH/2 / n) * i;
         b = (SCREEN_HEIGHT/ 2 / n) * i;

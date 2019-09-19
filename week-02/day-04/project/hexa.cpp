@@ -1,6 +1,11 @@
 #include "draw.h"
 #include <math.h>
 
+
+//OUTDATED MESSY PIECE OF GARBAGE
+
+
+
 void drawHexa(SDL_Renderer* gRenderer, int startX, int startY, int side){
     float PI = 3.14159265;
     int noSides = 6;

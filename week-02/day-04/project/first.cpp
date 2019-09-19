@@ -1,16 +1,17 @@
 #include "draw.h"
 
+//DOES THE WORK ON ANY SCREEN SIZE
 
 void draw(SDL_Renderer* gRenderer) {
 
     SDL_SetRenderDrawColor(gRenderer, 0xFF /*R*/, 0 /*G*/, 0 /*B*/, 0xFF /*A*/);
-    double a = 0;
-    double b = 0;
-    double n = 2000;
-    for (int i = 0; i <= n; i += 1) {
-        a = (SCREEN_WIDTH / n) * i;
-        b = (SCREEN_HEIGHT / n) * i;
-        SDL_RenderDrawLine(gRenderer, a, 0, SCREEN_WIDTH, b);
-        SDL_RenderDrawLine(gRenderer, 0, b, a, SCREEN_HEIGHT);
+    double horizontalSteps = 0;
+    double verticalSteps = 0;
+    double noOfLines = 100;
+    for (int i = 0; i <= noOfLines; i += 1) {
+        horizontalSteps = (SCREEN_WIDTH / noOfLines) * i;
+        verticalSteps = (SCREEN_HEIGHT / noOfLines) * i;
+        SDL_RenderDrawLine(gRenderer, horizontalSteps, 0, SCREEN_WIDTH, verticalSteps);
+        SDL_RenderDrawLine(gRenderer, 0, verticalSteps, horizontalSteps, SCREEN_HEIGHT);
     }
 }

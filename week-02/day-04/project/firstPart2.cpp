@@ -1,5 +1,7 @@
 #include "draw.h"
 
+//EVERYTHING IS ADJUSTABLE
+
 void draw(SDL_Renderer* gRenderer) {
     SDL_SetRenderDrawColor(gRenderer, 0xFF /*R*/, 0 /*G*/, 0 /*B*/, 0xFF /*A*/);
     double offset_y = 0;
