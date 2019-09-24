@@ -55,11 +55,8 @@ void miCopyFunc(std::string path){
     getline(inputFile, temp);
     outputFile << temp;
     while(!inputFile.eof()) {
-        outputFile << "\n";
-
         getline(inputFile, temp);
         outputFile << temp;
-        wasItOk = true;
     }
     std::cout << wasItOk << std::endl;
 
