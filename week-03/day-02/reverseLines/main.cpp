@@ -12,7 +12,6 @@ int main() {
     std::string row;
     char temp;
     while (std::getline(inputFile, row)) {
-        getline(inputFile, row);
         for (int i = 0; i < row.size()/2; i++){
             temp = row[i];
             row[i] = row[row.size()-1-i];
@@ -21,6 +20,7 @@ int main() {
         }
         std::cout << row << std::endl;
     }
+    inputFile.close();
 
     return 0;
 }
