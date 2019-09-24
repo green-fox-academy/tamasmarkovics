@@ -10,7 +10,6 @@ int main() {
     std::ifstream inputFile ("../double.txt");
     std::string row;
     while (std::getline(inputFile, row)) {
-        getline(inputFile, row);
         for (int i = 0; i < row.size(); i++){
             row.erase(i, 1);
         }
