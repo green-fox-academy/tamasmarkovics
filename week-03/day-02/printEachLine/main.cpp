@@ -27,8 +27,8 @@ int main() {
         std::cout << lines << std::endl;
 
         myFile.close();
-    } catch (std::ifstream::failure& e) {
-        std::cout << e.what() << std::endl;
+    } catch (std::ifstream::failure& youHaveFailedMe) {
+        std::cout << youHaveFailedMe.what() << std::endl;
     }
     return 0;
 }
