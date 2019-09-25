@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <algorithm>
 using std::string;
 
 std::vector<string> getIPs(string filePath);
@@ -28,6 +29,7 @@ int main()
         std::cout << endIp[i] << std::endl;
     }
     std::cout << std::endl << "GET/POST ratio is: " << endRatio << std::endl;
+    std::cout << "Number of IPs: " << endIp.size();
     return 0;
 }
 
@@ -57,8 +59,10 @@ std::vector<string> getIPs(string filePath)
             logs.push_back(tempi);
         }
     }
-
+    std::sort (logs.begin(), logs.end());
     inputFile.close();
+
+
     return logs;
 }
 
