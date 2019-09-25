@@ -8,6 +8,7 @@ public:
     int countUsable();
     void removeTrash();
     void addSharpie(Sharpie &sharpie);
+    Sharpie* getSharpie(int index);
 private:
     std::vector<Sharpie> _listOfSharpies;
 };

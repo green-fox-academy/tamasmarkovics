@@ -14,11 +14,11 @@ int SharpieSet::countUsable()
 }
 void SharpieSet::removeTrash()
 {   int counter = 0;
-    for (int i = 0; i < _listOfSharpies.size(); i++){
+    for (int i = 0; i < _listOfSharpies.size();){
         if (_listOfSharpies[i].getInkAmount() == 0){
             _listOfSharpies.erase(_listOfSharpies.begin() + i);
             counter++;
-        }
+        } else i++;
     }
     std::cout << counter << " sharpies got removed cause they were empty!" << std::endl;
 }
@@ -26,4 +26,8 @@ void SharpieSet::removeTrash()
 
 void SharpieSet::addSharpie(Sharpie &sharpie){
     _listOfSharpies.push_back(sharpie);
+}
+
+Sharpie* SharpieSet::getSharpie(int index){
+    return &_listOfSharpies[index];
 }
