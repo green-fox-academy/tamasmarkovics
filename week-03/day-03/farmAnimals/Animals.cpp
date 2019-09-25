@@ -25,12 +25,12 @@ void Animals::play()
     _thirst++;
 }
 
-int Animals::getHunger() const
+int Animals::getHunger()
 {
     return _hunger;
 }
 
-int Animals::getThirst() const
+int Animals::getThirst()
 {
     return _thirst;
 }
