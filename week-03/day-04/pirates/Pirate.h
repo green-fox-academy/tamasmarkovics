@@ -1,6 +1,7 @@
 #ifndef PIRATES_PIRATE_H
 #define PIRATES_PIRATE_H
 
+#include "Ship.h"
 
 class Pirate {
 

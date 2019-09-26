@@ -2,7 +2,6 @@
 #include "Pirate.h"
 #include <stdlib.h>
 #include <time.h>
-#include "Ship.h"
 
 
 void Pirate::drinkSomeRum()
