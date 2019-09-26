@@ -4,6 +4,13 @@
 
 int main()
 {
+    Pirate Tom;
+    Pirate Jack;
+
+    Tom.brawl(Jack);
+
+
+    /*
     Ship flyingDutchman;
     flyingDutchman.fillShip();
     Ship pinkPearl;
@@ -16,6 +23,6 @@ int main()
 
     pinkPearl.getStatus();
     flyingDutchman.getStatus();
-
+    */
     return 0;
 }

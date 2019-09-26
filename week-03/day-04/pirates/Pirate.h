@@ -10,9 +10,11 @@ public:
     void howItGoingMate();
     void die();
     void brawl(Pirate &ahoy);
+    void passOut();
+    bool _isUp();
 
-
-    bool _isDrunk;
+    int _drunkenness;
+    bool _isPassedOut;
     bool _izDed;
     int _captainDrankThisMuch;
 };

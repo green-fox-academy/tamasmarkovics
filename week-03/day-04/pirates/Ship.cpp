@@ -14,16 +14,16 @@ Ship::Ship()
 
 void Ship::fillShip()
 {
-    Pirate Joe;
-    for (int i = 0; i < _maxCapacity; i++){
-        _crew.push_back(Joe);
+    Pirate filler;
+    for (int i = _isAlive(); i < _maxCapacity; i++){
+        _crew.push_back(filler);
     }
-    _captain = Joe;
+    _captain =filler;
 }
 
 void Ship::getStatus() {
     std::cout << "The captain is ";
-    if (_captain._isDrunk){
+    if (_captain._drunkenness > 0){
         std::cout << "shitfaced!" << std::endl;
     } else {
         std::cout << "sober? Give him a drink!" << std::endl;
@@ -44,7 +44,7 @@ int Ship::_isAlive() {
 bool Ship::battle(Ship &otherShip)
 {
     srand (time(NULL));
-    if (_isAlive() - _captain._captainDrankThisMuch > otherShip._isAlive() - otherShip._captain._captainDrankThisMuch){
+    if (_isAlive() - _captain._captainDrankThisMuch >= otherShip._isAlive() - otherShip._captain._captainDrankThisMuch){
         int losses = rand() % otherShip._isAlive();
         for (int i = 0; losses > 0; i++){
             if (!otherShip._crew[i]._izDed) {
