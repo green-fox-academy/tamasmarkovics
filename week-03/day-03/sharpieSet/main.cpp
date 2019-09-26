@@ -24,6 +24,9 @@ int main() {
     mySet.getSharpie(3)->use();
     std::cout << "I have " << mySet.countUsable() << " usable sharpies" << std::endl;
     mySet.removeTrash();
+    std::cout << black.getInkAmount() << std::endl;
+    black.use();
+    std::cout << black.getInkAmount() << std::endl;
 
 
     return 0;

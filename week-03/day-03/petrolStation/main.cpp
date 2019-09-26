@@ -13,5 +13,6 @@ int main() {
     MOL.fill(green);
     MOL.fill(black);
 
+    std::cout << blue.isFull() << std::endl;
     return 0;
 }
