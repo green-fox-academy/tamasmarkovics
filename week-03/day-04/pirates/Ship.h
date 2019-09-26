@@ -3,13 +3,17 @@
 #include <vector>
 #include "Pirate.h"
 
+using std::vector;
 
 class Ship {
 
 public:
-    Ship(int maxCapacity);
+
+    Ship();
     void fillShip();
     void getStatus();
+    int _isAlive();
+    bool battle(Ship &otherShip);
 
 
     int _maxCapacity;

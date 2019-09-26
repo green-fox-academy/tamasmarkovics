@@ -8,14 +8,13 @@ void Pirate::drinkSomeRum()
 {
     if(!_izDed){
         _isDrunk = true;
+        _captainDrankThisMuch++;
     } else {
         std::cout << "He be ded!" << std::endl;
     }
 }
 
-Pirate::Pirate() : _isDrunk(false),
-                   _izDed (false){}
-
+Pirate::Pirate() : _isDrunk(false), _izDed (false){}
 
 void Pirate::howItGoingMate()
 {
@@ -31,6 +30,7 @@ void Pirate::howItGoingMate()
         std::cout << "He be ded!" << std::endl;
     }
 }
+
 void Pirate::die()
 {
     if(!_izDed){

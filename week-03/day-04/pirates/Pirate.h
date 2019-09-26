@@ -1,8 +1,6 @@
 #ifndef PIRATES_PIRATE_H
 #define PIRATES_PIRATE_H
 
-#include "Ship.h"
-
 class Pirate {
 
 public:
@@ -12,8 +10,11 @@ public:
     void howItGoingMate();
     void die();
     void brawl(Pirate &ahoy);
+
+
     bool _isDrunk;
     bool _izDed;
+    int _captainDrankThisMuch;
 };
 
 
