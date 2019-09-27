@@ -70,7 +70,7 @@ int main(int argc, char *args[]) {
 
     //---MY STUFF---//
 
-    FractalGenerator frac(gRenderer, 5);
+    FractalGenerator frac(gRenderer, 6);
 
     //---MY STUFF---//
 
