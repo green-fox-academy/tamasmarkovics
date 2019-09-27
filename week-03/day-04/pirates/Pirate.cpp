@@ -15,9 +15,6 @@ void Pirate::drinkSomeRum()
     } else {
             std::cout << "He is dead. Or just passed out? I cant tell." << std::endl;
     }
-
-
-
 }
 
 Pirate::Pirate() :  _izDed (false), _isPassedOut (false), _drunkenness (0) {}
@@ -80,7 +77,8 @@ void Pirate::passOut()
     std::cout << "Piss im out! *falls asleep*" << std::endl;
 }
 
-bool Pirate::_isUp() {
+bool Pirate::_isUp()
+{
     if (!_isPassedOut && !_izDed) {
         return true;
     } else return false;
