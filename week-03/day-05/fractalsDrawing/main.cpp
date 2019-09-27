@@ -7,8 +7,8 @@
 using namespace std;
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 500;
-const int SCREEN_HEIGHT = 500;
+const int SCREEN_WIDTH = 800;
+const int SCREEN_HEIGHT = 800;
 
 //Starts up SDL and creates window
 bool init();
@@ -98,8 +98,8 @@ int main(int argc, char *args[]) {
         //---MY DRAWING---//
 
         SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0xFF);
-        frac.draw(100, 100, 400, 400);
-
+        //frac.draw(100, 100, 400, 400);
+        frac.draw2(0,SCREEN_HEIGHT,SCREEN_WIDTH,SCREEN_HEIGHT);
         //---MY DRAWING---//
 
         //Update screen
