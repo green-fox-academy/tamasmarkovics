@@ -70,7 +70,7 @@ int main(int argc, char *args[]) {
 
     //---MY STUFF---//
 
-    FractalGenerator frac(gRenderer, 6);
+    FractalGenerator frac(gRenderer, 2);
 
     //---MY STUFF---//
 
@@ -99,7 +99,12 @@ int main(int argc, char *args[]) {
 
         SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0xFF);
         //frac.draw(100, 100, 400, 400);
-        frac.draw2(0,SCREEN_HEIGHT,SCREEN_WIDTH,SCREEN_HEIGHT);
+        //frac.draw2(0,SCREEN_HEIGHT,SCREEN_WIDTH,SCREEN_HEIGHT);
+
+        //frac.draw4(5);
+
+
+
         //---MY DRAWING---//
 
         //Update screen
