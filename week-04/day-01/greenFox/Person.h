@@ -4,10 +4,15 @@
 #include <string>
 using std::string;
 
+enum class Gender {
+    MALE,
+    FEMALE
+};
+
 class Person {
 
 public:
-    Person(string name, int age, string gender);
+    Person(string name, int age, Gender gender);
     Person();
 
     virtual void introduce();
@@ -16,7 +21,7 @@ public:
 protected:
     string _name;
     int _age;
-    string _gender;
+    Gender _gender;
 
 private:
 

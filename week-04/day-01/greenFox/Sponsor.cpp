@@ -5,12 +5,12 @@ Sponsor::Sponsor()
 {
     _name = "Jane Doe";
     _age = 30;
-    _gender = "female";
+    _gender = Gender::FEMALE;
     _company = "Google";
     _hiredStudents = 0;
 }
 
-Sponsor::Sponsor(string name, int age, string gender, string company)
+Sponsor::Sponsor(string name, int age, Gender gender, string company)
 {
     _name = name;
     _age = age;
@@ -21,7 +21,7 @@ Sponsor::Sponsor(string name, int age, string gender, string company)
 
 void Sponsor::introduce()
 {
-    std::cout << "Hi, I'm " << _name << ", a " << _age << " year old " << _gender << " who represents " << _company <<
+    std::cout << "Hi, I'm " << _name << ", a " << _age << " year old " << (_gender == Gender::MALE ? "male" : "female") << " who represents " << _company <<
     " and hired " << _hiredStudents << " students so far." << std::endl;
 }
 

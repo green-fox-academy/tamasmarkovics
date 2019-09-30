@@ -8,10 +8,11 @@ void Mentor::getGoal()
 
 void Mentor::introduce()
 {
-    std::cout << "Hi, I'm " << _name << ", a " << _age << " year old " << _gender << " " << _level <<" mentor." << std::endl;
+    std::cout << "Hi, I'm " << _name << ", a " << _age << " year old " << (_gender == Gender::MALE ? "male" : "female")
+    << " " << (_level == Level::SENIOR ? "senior" : _level == Level::JUNIOR ? "junior" : "intermediate") <<" mentor." << std::endl;
 }
 
-Mentor::Mentor(string name, int age, string gender, string level)
+Mentor::Mentor(string name, int age, Gender gender, Level level)
 {
     _name = name;
     _age = age;
@@ -23,6 +24,6 @@ Mentor::Mentor()
 {
     _name = "Jane Doe";
     _age = 30;
-    _gender = "female";
-    _level = "intermediate";
+    _gender = Gender::FEMALE;
+    _level = Level::INTERMEDIATE;
 }

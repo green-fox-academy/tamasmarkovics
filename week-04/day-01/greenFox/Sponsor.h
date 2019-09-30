@@ -9,7 +9,7 @@ class Sponsor : public Person {
 
 public:
     Sponsor();
-    Sponsor(string name, int age, string gender, string company);
+    Sponsor(string name, int age, Gender gender, string company);
 
     void introduce() override;
     void hire();

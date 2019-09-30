@@ -5,18 +5,23 @@
 using std::string;
 #include "Person.h"
 
+enum class Level {
+    JUNIOR,
+    SENIOR,
+    INTERMEDIATE
+};
 
 class Mentor : public Person {
 
 public:
-    Mentor(string name, int age, string gender, string level);
+    Mentor(string name, int age, Gender gender, Level level);
     Mentor();
 
     void getGoal() override;
     void introduce() override;
 
 private:
-    string _level;
+    Level _level;
 };
 
 

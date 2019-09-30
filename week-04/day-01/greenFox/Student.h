@@ -9,7 +9,7 @@ using std::string;
 class Student : public Person {
 public:
 
-    Student(string name, int age, string gender, string previousOrg);
+    Student(string name, int age, Gender gender, string previousOrg);
     Student();
 
     void getGoal() override;

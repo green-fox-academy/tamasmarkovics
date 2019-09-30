@@ -8,11 +8,11 @@ void Student::getGoal()
 }
 void Student::introduce()
 {
-    std::cout << "Hi, I'm " << _name << ", a " << _age << " year old " << _gender << " from " << _previousOrganization <<
+    std::cout << "Hi, I'm " << _name << ", a " << _age << " year old " << (_gender == Gender::MALE ? "male" : "female") << " from " << _previousOrganization <<
     "who skipped " << _skippedDays << " days from the course already." << std::endl;
 }
 
-Student::Student(string name, int age, string gender, string previousOrg)
+Student::Student(string name, int age, Gender gender, string previousOrg)
 {
     _name = name;
     _age = age;
@@ -25,7 +25,7 @@ Student::Student()
 {
     _name = "Jane Doe";
     _age = 30;
-    _gender = "female";
+    _gender = Gender::FEMALE;
     _previousOrganization = "The School of Life";
     _skippedDays = 0;
 }
