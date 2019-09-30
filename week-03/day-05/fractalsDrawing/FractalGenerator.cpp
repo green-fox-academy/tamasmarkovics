@@ -3,7 +3,8 @@
 
 
 FractalGenerator::FractalGenerator(SDL_Renderer* renderer, int maxDepth) : _renderer(renderer),
-                                                                           maxDepth(maxDepth) {}
+                                                                           maxDepth(maxDepth), _angle(0.5f),
+                                                                           _ratioOfStraight(0.75f), _ratioOfSides(0.7f) {}
 
 void FractalGenerator::draw(int x0, int y0, int xm, int ym)
 {
@@ -80,13 +81,13 @@ void FractalGenerator::drawCircle(int startX, int startY, int radius, int depth)
 
     if(depth < maxDepth){
 
-        if (depth == 0) SDL_SetRenderDrawColor(_renderer, 0, 0, 255, 0xFF);
+        //if (depth == 0) SDL_SetRenderDrawColor(_renderer, 0, 0, 255, 0xFF);
         drawCircle(startX - radius / 2 / pow(3, 0.5) * 1.5, startY + radius / 4, radius / 2, depth + 1);
 
-        if (depth == 0) SDL_SetRenderDrawColor(_renderer, 150, 0, 0, 0xFF);
+        //if (depth == 0) SDL_SetRenderDrawColor(_renderer, 150, 0, 0, 0xFF);
         drawCircle(startX + radius / 2 / pow(3, 0.5) * 1.5, startY + radius / 4, radius / 2, depth + 1);
 
-        if (depth == 0) SDL_SetRenderDrawColor(_renderer, 0, 100, 0, 0xFF);
+        //if (depth == 0) SDL_SetRenderDrawColor(_renderer, 0, 100, 0, 0xFF);
         drawCircle(startX, startY - radius / 2, radius / 2, depth + 1);
     }
 }
@@ -100,18 +101,45 @@ void FractalGenerator::draw3(int x0, int y0, int radius)
 //TREE
 
 
-void FractalGenerator::drawTree(double startX, double startY, double endX, double endY, double angle, int depth)
+void FractalGenerator::drawBranch(double xStart, double yStart, int depth, double actualSize, double actualAngle)
 {
-    SDL_RenderDrawLine(_renderer, startX, startY, endX, endY);
-    int lenght = 100 - 20 * depth;
-    if(depth < maxDepth){
-        drawTree(endX, endY, endX, endY - lenght, 0, depth++);
-        drawTree(endX, endY, endX - lenght * cos(angle * depth), endY - lenght * 0.6 * sin(angle * depth), angle + 20, depth++);
-        drawTree(endX, endY, endX + lenght * cos(angle * depth), endY - lenght * 0.6 * sin(angle * depth), angle - 20, depth++);
+    if (depth < maxDepth) {
+
+        //straight branch
+        int xEndOfStraightSide = xStart + _ratioOfStraight * actualSize * cosf(actualAngle);      //depth should start with 0
+        int yEndOfStraightSide = yStart - _ratioOfStraight * actualSize * sinf(actualAngle);
+        SDL_RenderDrawLine(_renderer, xStart, yStart, xEndOfStraightSide, yEndOfStraightSide);
+
+        //left side branch
+        int xEndOfLeftSide = xStart + _ratioOfSides * actualSize * cosf(actualAngle + _angle);      //depth should start with 0
+        int yEndOfLeftSide = yStart - _ratioOfSides * actualSize * sinf(actualAngle + _angle);
+        SDL_RenderDrawLine(_renderer, xStart, yStart, xEndOfLeftSide, yEndOfLeftSide);
+
+        //right side branch
+        int xEndOfRightSide = xStart + _ratioOfSides * actualSize * cosf(actualAngle - _angle);      //depth should start with 0
+        int yEndOfRightSide = yStart - _ratioOfSides * actualSize * sinf(actualAngle - _angle);
+        SDL_RenderDrawLine(_renderer, xStart, yStart, xEndOfRightSide, yEndOfRightSide);
+
+        //draw next straight branch
+        drawBranch(xEndOfStraightSide, yEndOfStraightSide, depth + 1, _ratioOfStraight * actualSize, actualAngle);
+        //draw next left branch
+        drawBranch(xEndOfLeftSide, yEndOfLeftSide, depth + 1, _ratioOfSides * actualSize, actualAngle + _angle);
+        //draw next right branch
+        drawBranch(xEndOfRightSide, yEndOfRightSide, depth + 1, _ratioOfSides * actualSize, actualAngle - _angle);
+
     }
 }
 
+void FractalGenerator::drawTree(int xStart, int yStart, int depth, float size) {
+    maxDepth = depth;
 
-void FractalGenerator::draw4(int lenght){
-    drawTree(400, 800, 400, 800 - lenght, 0, 0);
+    SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 0xFF);
+    int xEnd = xStart;
+    int yEnd = yStart - 150;
+    SDL_RenderDrawLine(_renderer, xStart, yStart, xEnd, yEnd);
+    drawBranch(xEnd, yEnd, 0, size, 3.1415 / 2);
+
 }
+
+
+

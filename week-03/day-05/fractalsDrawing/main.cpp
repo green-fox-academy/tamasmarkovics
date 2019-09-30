@@ -7,8 +7,8 @@
 using namespace std;
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 800;
+//const int SCREEN_WIDTH = 800;
+//const int SCREEN_HEIGHT = 800;
 
 //Starts up SDL and creates window
 bool init();
@@ -70,7 +70,7 @@ int main(int argc, char *args[]) {
 
     //---MY STUFF---//
 
-    FractalGenerator frac(gRenderer, 2);
+    FractalGenerator frac(gRenderer, 5);
 
     //---MY STUFF---//
 
@@ -100,9 +100,8 @@ int main(int argc, char *args[]) {
         SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0xFF);
         //frac.draw(100, 100, 400, 400);
         //frac.draw2(0,SCREEN_HEIGHT,SCREEN_WIDTH,SCREEN_HEIGHT);
-
-        //frac.draw4(5);
-
+        frac.draw3(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 400);
+        //frac.drawTree(SCREEN_WIDTH / 2, SCREEN_HEIGHT, 12, 230);
 
 
         //---MY DRAWING---//
