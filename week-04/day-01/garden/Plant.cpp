@@ -3,7 +3,7 @@
 
 
 
-void Plant::water(float amount)
+void Plant::water(double amount)
 {
     _waterLevel += amount * 1;
 }

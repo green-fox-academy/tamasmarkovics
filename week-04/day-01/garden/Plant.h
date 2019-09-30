@@ -5,15 +5,17 @@
 using std::string;
 
 class Plant {
+
 public:
-    virtual void water(float amount);
+    virtual void water(double amount);
     virtual bool doesItNeedWater();
     virtual void status();
 
 protected:
-    float _waterLevel;
+    double _waterLevel;
     string _plantType;
     string _color;
+
 };
 
 
