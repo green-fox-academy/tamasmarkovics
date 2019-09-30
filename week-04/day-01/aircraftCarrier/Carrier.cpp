@@ -2,6 +2,7 @@
 
 Carrier::Carrier(int ammo, int hp)
 {
+    _healthPoint = hp;
     _ammo = ammo;
 }
 
@@ -30,11 +31,18 @@ void Carrier::fight(Carrier* enemyShip)
     for(int i = 0; i < _aircrafts.size(); i++){
         dmgDealt += _aircrafts[i]->fight();
     }
-    enemyShip->_healthPoint -= dmgDealt;
+
+    if(enemyShip->_healthPoint -= dmgDealt <= 0){
+        enemyShip->_healthPoint = 0;
+        std::cout << "Ship sunk!" << std::endl;
+    } else enemyShip->_healthPoint -= dmgDealt;
 
 }
 
-void getStatus()
+void Carrier::getStatus()
 {
-    
+    std::cout << "Carrier ammo: " << _ammo << ", health point: " << _healthPoint << std::endl;
+    for (int i = 0; i < _aircrafts.size(); i++){
+        _aircrafts[i]->getStatus();
+    }
 }

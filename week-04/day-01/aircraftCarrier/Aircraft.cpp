@@ -20,12 +20,12 @@ int Aircraft::fight()
 int Aircraft::refill(int fuel)
 {
     if (fuel == 0){
-        std::cout << "No more fuel!!" << std::endl;
+        std::cout << "No more ammo!!" << std::endl;
         return 0;
     }
     int refillAmount = _maxAmmo - _currentAmmo;
     _currentAmmo = _maxAmmo;
-    std::cout << fuel - refillAmount << " fuel remained." << std::endl;
+    std::cout << fuel - refillAmount << " ammo remained." << std::endl;
     return fuel - refillAmount;
 }
 

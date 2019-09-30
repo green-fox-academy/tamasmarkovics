@@ -4,6 +4,7 @@
 #include "F16.h"
 #include "F35.h"
 #include <vector>
+#include <iostream>
 using std::vector;
 
 class Carrier {
