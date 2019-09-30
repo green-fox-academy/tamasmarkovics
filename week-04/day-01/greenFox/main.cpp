@@ -11,21 +11,21 @@ int main()
 {
     std::vector<Person*> people;
 
-    Person mark("Mark", 46, "MALE");
+    Person mark("Mark", 46, "male");
     people.push_back(&mark);
     Person jane;
     people.push_back(&jane);
-    Student john("John Doe", 20, "MALE", "BME");
+    Student john("John Doe", 20, "male", "BME");
     people.push_back(&john);
     Student student;
     people.push_back(&student);
-    Mentor gandhi("Gandhi", 148, "MALE", "SENIOR");
+    Mentor gandhi("Gandhi", 148, "male", "SENIOR");
     people.push_back(&gandhi);
     Mentor mentor;
     people.push_back(&mentor);
     Sponsor sponsor;
     people.push_back(&sponsor);
-    Sponsor elon("Elon Musk", 46, "MALE", "SpaceX");
+    Sponsor elon("Elon Musk", 46, "male", "SpaceX");
     people.push_back(&elon);
 
     student.skipDays(3);
