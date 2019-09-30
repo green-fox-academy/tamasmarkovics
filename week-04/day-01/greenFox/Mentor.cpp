@@ -5,6 +5,7 @@ void Mentor::getGoal()
 {
     std::cout << "My goal is: Educate brilliant junior software developers." << std::endl;
 }
+
 void Mentor::introduce()
 {
     std::cout << "Hi, I'm " << _name << ", a " << _age << " year old " << _gender << " " << _level <<" mentor." << std::endl;
