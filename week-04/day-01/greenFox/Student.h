@@ -8,12 +8,15 @@ using std::string;
 
 class Student : public Person {
 public:
+
     Student(string name, int age, string gender, string previousOrg);
     Student();
+
     void getGoal() override;
     void introduce() override;
     void skipDays(int numberOfDays);
-private:
+
+protected:
     string _previousOrganization;
     int _skippedDays;
 };

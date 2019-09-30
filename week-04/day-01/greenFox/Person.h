@@ -5,14 +5,19 @@
 using std::string;
 
 class Person {
+
 public:
     Person(string name, int age, string gender);
     Person();
+
     virtual void introduce();
     virtual void getGoal();
+
+protected:
     string _name;
     int _age;
     string _gender;
+
 private:
 
 };
