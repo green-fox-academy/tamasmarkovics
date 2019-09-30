@@ -8,12 +8,13 @@ class Person {
 public:
     Person(string name, int age, string gender);
     Person();
-    void introduce();
-    void getGoal();
-private:
+    virtual void introduce();
+    virtual void getGoal();
     string _name;
     int _age;
     string _gender;
+private:
+
 };
 
 
