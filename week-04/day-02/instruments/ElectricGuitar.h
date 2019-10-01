@@ -8,7 +8,7 @@ class ElectricGuitar : public StringedInstrument{
 
 public:
     ElectricGuitar();
-    void sound();
+    void sound() override;
 
 protected:
 

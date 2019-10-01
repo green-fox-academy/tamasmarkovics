@@ -4,10 +4,10 @@
 #include "StringedInstrument.h"
 
 
-class BassGuitar : public StringedInstrument {
+class BassGuitar : public StringedInstrument{
 public:
     BassGuitar();
-    void sound();
+    void sound() override;
 
 };
 
