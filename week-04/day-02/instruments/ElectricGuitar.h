@@ -2,9 +2,13 @@
 #define INSTRUMENTS_ELECTRICGUITAR_H
 
 
-class ElectricGuitar {
+#include "StringedInstrument.h"
+
+class ElectricGuitar : public StringedInstrument{
 
 public:
+    ElectricGuitar();
+    void sound();
 
 protected:
 
