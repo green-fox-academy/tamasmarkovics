@@ -36,10 +36,16 @@ TEST(SumCheck, testSumNegativeElement)
     ASSERT_EQ(sum(toSum), -126);
 }
 
-
 TEST(AnagramCheck, testAnagram)
 {
     std::cout << "Starting anagram check" << std::endl;
-    ASSERT_EQ(anagram("immawritesomethinglong", "gnolgnihtemosetirwammi"), true);
+    ASSERT_EQ(anagram("asddsaasd", "aaasssddd"), true);
+}
+
+TEST(CountLetters, testCountLetters )
+{
+    std::cout << "Starting letter count check" << std::endl;
+    map<char, int> test = countLetters("kecskesajt");
+    ASSERT_EQ(test['t'], 1);
 }
 

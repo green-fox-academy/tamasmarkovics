@@ -3,8 +3,11 @@
 
 #include <string>
 #include <vector>
+#include <map>
 using std::vector;
 using std::string;
+using std::map;
+using std::pair;
 
 std::string getApple()
 {
@@ -21,17 +24,30 @@ int sum(vector<int> toSum)
 }
 
 
-bool anagram(string input1, string input2){
-    bool sofar;
-    if (input1.length() == input2.length()){
-        sofar = true;
-        for (int i = 0; ((i < input1.length()) && sofar); ++i) {
-            sofar = input1[i] == input2[input2.length() - 1 - i];;
-        }
-    } else sofar = false;
-
-    return sofar;
+bool anagram (std::string inputA, std::string inputB)
+{
+    bool ifAnagram = false;
+    if (inputA.length() == inputB.length()) {
+        std::sort(inputA.begin(), inputA.end());
+        std::sort(inputB.begin(), inputB.end());
+        ifAnagram = inputA == inputB;
+    }
+    return ifAnagram;
 }
+
+map<char, int> countLetters(string toBeCounted)
+{
+    map<char, int> letters;
+    for(unsigned int i = 0; i < toBeCounted.length(); i++){
+        if (letters.count(toBeCounted[i]) == 0){
+            pair<char, int> newLetter(toBeCounted[i], 1);
+            letters.insert(newLetter);
+        } else letters[toBeCounted[i]]++;
+    }
+
+    return letters;
+}
+
 
 
 
