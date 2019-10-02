@@ -49,3 +49,17 @@ TEST(CountLetters, testCountLetters )
     ASSERT_EQ(test['t'], 1);
 }
 
+
+TEST(Fibonacci, testFibonacci)
+{
+    std::cout << "fibonacci check" << std::endl;
+    std::cout << fibonacci(10) << std::endl;
+    ASSERT_EQ(fibonacci(10), 89);
+}
+
+TEST(Fibonacci, testFibonacciNegativeInput)
+{
+    std::cout << "Starting fibonacci check with negative input" << std::endl;
+    ASSERT_EQ(fibonacci(-3), -1);
+}
+

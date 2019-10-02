@@ -48,6 +48,19 @@ map<char, int> countLetters(string toBeCounted)
     return letters;
 }
 
+int fibonacci(int till)
+{
+    if (till < 0) return -1;
+    if (till == 0) return 1;
+
+    if ((till == 1) || (till == 2)) {
+        return till;
+    } else {
+        return(fibonacci(till - 1) + fibonacci(till - 2));
+    }
+
+}
+
 
 
 
