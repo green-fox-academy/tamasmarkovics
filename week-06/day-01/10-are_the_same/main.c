@@ -25,7 +25,7 @@ int are_the_same(char *s1, char *s2)
     if (length_of_string(s1) != length_of_string(s2)) return 0;
     for (int i = 0; i < length_of_string(s1); i++) {
         if (s1[i] == s2[i]) {}
-        else if (abs((int)s1[i] - (int)s2[i]) != 32) return 0;
+        else if (((s1 > 96 && s1 < 123) || (s2 > 96 && s2 < 123)) && ((abs((int)s1[i] - (int)s2[i]) != 32))) return 0;
     }
     return 1;
 }
