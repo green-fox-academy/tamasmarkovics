@@ -13,6 +13,7 @@ set(PATH_TO_GOOGLETEST "C:/googletest/googletest")
 set(PROJECT_NAME MyApp)
 
 
+
 project(${PROJECT_NAME})
 set(CMAKE_CXX_STANDARD 14)
 
