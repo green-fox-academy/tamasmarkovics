@@ -16,14 +16,13 @@ void destroy_vector(vector_t* to_destroy);
 void vector_insert(vector_t* insert_in, int at, void* this);
 int empty_vector(vector_t* to_empty);
 void vector_erase(vector_t* erase_in, int at);
+int search(vector_t* to_search, void* what);
+void shuffle(vector_t* to_shuffle);
 
 #endif //INC_02_BETTER_VECTOR_VECTOR_H
 
 /*
 TODO
-Search within the vector
-This function should take a vector and a value as parameters. It should look for a given value in the specificed vector and return the index where it's found. If the element is not found it should return -1.
-
 Shuffle 💪
 It should randomly rearrange all the elements in the vector.
 

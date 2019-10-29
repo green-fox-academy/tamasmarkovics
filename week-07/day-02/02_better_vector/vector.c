@@ -46,7 +46,7 @@ void vector_insert(vector_t* insert_in, int at, void* this)
 {
     if (insert_in->size >= insert_in->capacity) {
         insert_in->capacity += 4 * insert_in->size;
-        insert_in->data = (int *)realloc(insert_in->data, insert_in->capacity * insert_in->elemet_size);
+        insert_in->data = realloc(insert_in->data, insert_in->capacity * insert_in->elemet_size);
     }
 
     for (int i = insert_in->size; i > at; i--) {
@@ -62,7 +62,10 @@ int empty_vector(vector_t* to_empty)
         ((char*)to_empty->data)[i] = '0';
     }
     for (int i = 0; i < to_empty->size * to_empty->elemet_size; i++) {
-        if (((char*)to_empty->data)[i] != 0) return 0;
+        if (((char*)to_empty->data)[i] != 0) {
+            to_empty->size = 0;
+            return 0;
+        }
     }
     return 1;
 }
@@ -74,3 +77,20 @@ void vector_erase(vector_t* erase_in, int at)
     }
     erase_in->size--;
 }
+
+
+int search(vector_t* to_search, void* what)
+{
+    for (int i = 0; i < to_search->size; i++) {
+        int found = 1;
+        for (int j = 0; j < to_search->elemet_size; ++j) {
+            if (((char*)to_search->data)[i * to_search->elemet_size + j]  != ((char*)what)[j]) {
+                found = 0;
+            }
+        }
+        if (found) return i;
+    }
+    return -1;
+}
+
+void shuffle(vector_t* to_shuffle);

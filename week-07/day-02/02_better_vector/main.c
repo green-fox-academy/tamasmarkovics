@@ -4,41 +4,44 @@
 int main()
 {
     vector_t test;
-    init_vector(&test, 10, sizeof(float));
-    float td = 32.5678f;
-    float asd = 62.5678f;
+    init_vector(&test, 10, sizeof(int));
+    int td = 32;
+    int asd = 62;
     push_back(&test, (void*)&td);
     push_back(&test, (void*)&td);
     push_back(&test, (void*)&td);
     push_back(&test, (void*)&asd);
     push_back(&test, (void*)&td);
-    td = 33.44f;
+    td = 33;
     push_back(&test, (void*)&asd);
     push_back(&test, (void*)&td);
     push_back(&test, (void*)&td);
 
     for (int i = 0; i < test.size; ++i) {
-        printf("%.2f, ", *(float*)element_at(&test, i));
+        printf("%d, ", *(int*)element_at(&test, i));
     }
     printf("\n");
-    float my_insert = 69.6969f;
+    int my_insert = 69;
     vector_insert(&test, 2, &my_insert);
-    my_insert = 44.1f;
+    my_insert = 44;
     vector_insert(&test, 2, &my_insert);
-    my_insert = 141.1f;
+    my_insert = 141;
     vector_insert(&test, 2, &my_insert);
+
     pop_back(&test);
 
     for (int i = 0; i < test.size; ++i) {
-        printf("%.2f, ", *(float*)element_at(&test, i));
+        printf("%d, ", *(int*)element_at(&test, i));
     }
     printf("\n");
     vector_erase(&test, 4);
 
     for (int i = 0; i < test.size; ++i) {
-        printf("%.2f, ", *(float*)element_at(&test, i));
+        printf("%d, ", *(int *)element_at(&test, i));
     }
 
+    int temp = 141;
+    printf("\n%d is at %d", temp, search(&test, &temp));
     destroy_vector(&test);
 
 
