@@ -33,7 +33,7 @@ int main()
     for (int i = 0; i < test.size; ++i) {
         printf("%d, ", *(int*)element_at(&test, i));
     }
-    printf("\n");
+    printf("\nDelete 4\n");
     vector_erase(&test, 4);
 
     for (int i = 0; i < test.size; ++i) {
@@ -42,8 +42,19 @@ int main()
 
     int temp = 141;
     printf("\n%d is at %d", temp, search(&test, &temp));
+
+
+    printf("\nSwap 3 & 5\n");
+    element_swap(&test, 3, 5);
+    for (int i = 0; i < test.size; ++i) {
+        printf("%d, ", *(int *)element_at(&test, i));
+    }
+    printf("\nShuffle\n");
+    shuffle(&test);
+    for (int i = 0; i < test.size; ++i) {
+        printf("%d, ", *(int *)element_at(&test, i));
+    }
+
     destroy_vector(&test);
-
-
     return 0;
 }

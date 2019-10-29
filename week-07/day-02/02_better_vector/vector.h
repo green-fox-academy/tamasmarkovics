@@ -18,6 +18,7 @@ int empty_vector(vector_t* to_empty);
 void vector_erase(vector_t* erase_in, int at);
 int search(vector_t* to_search, void* what);
 void shuffle(vector_t* to_shuffle);
+void element_swap(vector_t* swap_in, int this, int that);
 
 #endif //INC_02_BETTER_VECTOR_VECTOR_H
 

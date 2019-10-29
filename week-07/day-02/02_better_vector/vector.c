@@ -1,6 +1,7 @@
 #include "vector.h"
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 void init_vector(vector_t* to_init, int init_capacity, int size_of_element)
 {
@@ -93,4 +94,19 @@ int search(vector_t* to_search, void* what)
     return -1;
 }
 
-void shuffle(vector_t* to_shuffle);
+void element_swap(vector_t* swap_in, int this, int that)
+{
+    char* temp = malloc(swap_in->elemet_size);
+    memcpy(temp, &((char*)swap_in->data)[this * swap_in->elemet_size], swap_in->elemet_size);
+    memcpy(&((char*)swap_in->data)[this * swap_in->elemet_size], &((char*)swap_in->data)[that * swap_in->elemet_size], swap_in->elemet_size);
+    memcpy(&((char*)swap_in->data)[that * swap_in->elemet_size], temp, swap_in->elemet_size);
+    free(temp);
+}
+
+void shuffle(vector_t* to_shuffle)
+{
+    srand(time(NULL));
+    for (int i = 0; i < to_shuffle->size; ++i) {
+        element_swap(to_shuffle, i, rand() % to_shuffle->size);
+    }
+}
