@@ -55,6 +55,12 @@ int main()
         printf("%d, ", *(int *)element_at(&test, i));
     }
 
+    printf("\nMake unique\n");
+    unique(&test);
+    for (int i = 0; i < test.size; ++i) {
+        printf("%d, ", *(int *)element_at(&test, i));
+    }
+
     destroy_vector(&test);
     return 0;
 }

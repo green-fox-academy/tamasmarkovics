@@ -110,3 +110,10 @@ void shuffle(vector_t* to_shuffle)
         element_swap(to_shuffle, i, rand() % to_shuffle->size);
     }
 }
+
+void unique(vector_t* make_unique) {
+    for (int i = make_unique->size - 1; i >= 0; --i) {
+        int index = search(make_unique, element_at(make_unique, i));
+        if (index != -1 && index != i) vector_erase(make_unique, index);
+    }
+}
