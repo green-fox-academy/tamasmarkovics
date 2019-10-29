@@ -10,7 +10,6 @@ void init_vector(vector_t* to_init, int init_capacity, int size_of_element)
     to_init->size = 0;
     to_init->elemet_size = size_of_element;
 }
-
 void push_back(vector_t* to_push, void* new)
 {
     if (to_push->size >= to_push->capacity) {
@@ -21,12 +20,10 @@ void push_back(vector_t* to_push, void* new)
     memcpy(&((char*)to_push->data)[to_push->size * to_push->elemet_size], (char*)new, to_push->elemet_size);
     to_push->size++;
 }
-
 void* element_at(vector_t* in_at, int at)
 {
     return (void*)&(((char*)(in_at->data))[at * in_at->elemet_size]);
 }
-
 void pop_back(vector_t* to_pop)
 {
     to_pop->size--;
@@ -35,14 +32,12 @@ void pop_back(vector_t* to_pop)
         to_pop->data = (int *) realloc(to_pop->data, to_pop->capacity * to_pop->elemet_size);
     }
 }
-
 void destroy_vector(vector_t* to_destroy)
 {
     to_destroy->size = 0;
     to_destroy->capacity = 0;
     free(to_destroy->data);
 }
-
 void vector_insert(vector_t* insert_in, int at, void* this)
 {
     if (insert_in->size >= insert_in->capacity) {
@@ -56,7 +51,6 @@ void vector_insert(vector_t* insert_in, int at, void* this)
     memcpy(&((char*)insert_in->data)[at * insert_in->elemet_size], (char*)this, insert_in->elemet_size);
     insert_in->size++;
 }
-
 int empty_vector(vector_t* to_empty)
 {
     for (int i = 0; i < to_empty->size * to_empty->elemet_size; i++) {
@@ -70,7 +64,6 @@ int empty_vector(vector_t* to_empty)
     }
     return 1;
 }
-
 void vector_erase(vector_t* erase_in, int at)
 {
     for (int i = at; i < erase_in->size; i++) {
@@ -78,8 +71,6 @@ void vector_erase(vector_t* erase_in, int at)
     }
     erase_in->size--;
 }
-
-
 int search(vector_t* to_search, void* what)
 {
     for (int i = 0; i < to_search->size; i++) {
@@ -93,7 +84,6 @@ int search(vector_t* to_search, void* what)
     }
     return -1;
 }
-
 void element_swap(vector_t* swap_in, int this, int that)
 {
     char* temp = malloc(swap_in->elemet_size);
@@ -102,7 +92,6 @@ void element_swap(vector_t* swap_in, int this, int that)
     memcpy(&((char*)swap_in->data)[that * swap_in->elemet_size], temp, swap_in->elemet_size);
     free(temp);
 }
-
 void shuffle(vector_t* to_shuffle)
 {
     srand(time(NULL));
@@ -110,10 +99,13 @@ void shuffle(vector_t* to_shuffle)
         element_swap(to_shuffle, i, rand() % to_shuffle->size);
     }
 }
-
 void unique(vector_t* make_unique) {
     for (int i = make_unique->size - 1; i >= 0; --i) {
         int index = search(make_unique, element_at(make_unique, i));
         if (index != -1 && index != i) vector_erase(make_unique, index);
     }
+}
+void transform(void (*func)(), vector_t* to_transform, int index, int num)
+{
+    func(to_transform, index);
 }

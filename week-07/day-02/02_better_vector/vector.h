@@ -20,15 +20,8 @@ int search(vector_t* to_search, void* what);
 void shuffle(vector_t* to_shuffle);
 void element_swap(vector_t* swap_in, int this, int that);
 void unique(vector_t* make_unique);
+void transform(void (*func)(), vector_t* to_transform, int index, int num);
 
 #endif //INC_02_BETTER_VECTOR_VECTOR_H
 
-/*
-TODO
-Unique 💪
-It should remove the duplicate elements from the vector
-
-Transform 💪 💪 💪
-This function should take a vector and a function as parameter. It should apply this function to all the elements in the vector.
-*/
 

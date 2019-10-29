@@ -61,6 +61,11 @@ int main()
         printf("%d, ", *(int *)element_at(&test, i));
     }
 
+    transform(vector_insert, &test, 4, 992);
+    printf("\nShuffle\n");
+    for (int i = 0; i < test.size; ++i) {
+        printf("%d, ", *(int *)element_at(&test, i));
+    }
     destroy_vector(&test);
     return 0;
 }
