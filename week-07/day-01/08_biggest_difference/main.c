@@ -2,6 +2,8 @@
 #include <string.h>
 #include <stdlib.h>
 
+//THIS SOUNDS LIKE FUNDAMENTALLY WRONG? BUT WHERE
+
 typedef struct my_class {
     char* name;
     int students;
@@ -10,9 +12,9 @@ typedef struct my_class {
 
 class_t* fill_struct(int size);
 void free_struct(class_t* class_to_free, int number_of_classes);
-// Which class has the best exam?
-// Which class has the biggest difference between the worst and best exam and how much is the difference?
-// What is the average of all the exams?
+
+int get_best(class_t* best_in, int class_number);
+
 
 
 int main()
@@ -20,8 +22,9 @@ int main()
     printf("How many classes are there?\n");
     int number_of_classes = 0;
     scanf("%d", &number_of_classes);
-
     class_t* classes = fill_struct(number_of_classes);
+    int has_the_best = get_best(classes, number_of_classes);
+    printf("%d", has_the_best);
     free_struct(classes, number_of_classes);
     return 0;
 }
@@ -46,11 +49,13 @@ class_t* fill_struct(int size)
         scanf("%s", temp);
         temp = realloc(temp, strlen(temp) + 1);
         school[i].name = temp;
+
         //NUMBER OF STUDENTS
         printf("No of students?\n");
         int size_of_students = 0;
         scanf("%d", &size_of_students);
         school[i].students = size_of_students;
+
         //RESULTS
         int *results = malloc(size_of_students * sizeof(int));
         printf("Results of students?\n");
@@ -61,4 +66,3 @@ class_t* fill_struct(int size)
 
     return school;
 }
-
