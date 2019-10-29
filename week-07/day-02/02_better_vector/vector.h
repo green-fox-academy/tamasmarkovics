@@ -1,11 +1,19 @@
 #ifndef INC_02_BETTER_VECTOR_VECTOR_H
 #define INC_02_BETTER_VECTOR_VECTOR_H
 
+typedef enum error {
+    NO_ERROR = 0,
+    OUT_OF_BOUNDS,
+    EMPTY,
+    WRONG_ARGUMENT
+} error_t;
+
 typedef struct vector {
     int size;
     int capacity;
     void* data;
-    int elemet_size;
+    int element_size;
+    error_t error_handle;
 } vector_t;
 
 void init_vector(vector_t* to_init, int init_capacity, int size_of_element);

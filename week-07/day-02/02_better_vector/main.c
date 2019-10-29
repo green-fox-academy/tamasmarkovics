@@ -20,6 +20,7 @@ int main()
     for (int i = 0; i < test.size; ++i) {
         printf("%d, ", *(int*)element_at(&test, i));
     }
+
     printf("\n");
     int my_insert = 69;
     vector_insert(&test, 2, &my_insert);
@@ -33,6 +34,7 @@ int main()
     for (int i = 0; i < test.size; ++i) {
         printf("%d, ", *(int*)element_at(&test, i));
     }
+
     printf("\nDelete 4\n");
     vector_erase(&test, 4);
 
@@ -49,6 +51,7 @@ int main()
     for (int i = 0; i < test.size; ++i) {
         printf("%d, ", *(int *)element_at(&test, i));
     }
+
     printf("\nShuffle\n");
     shuffle(&test);
     for (int i = 0; i < test.size; ++i) {
