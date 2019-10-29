@@ -98,6 +98,24 @@ void vector_erase(vector_t* erase_in, int at)
     }
 
     erase_in->size--;
+    if (erase_in->size < erase_in->capacity / 2) {
+        erase_in->capacity /= 2;
+        erase_in->data = (int *) realloc(erase_in->data, erase_in->capacity * erase_in->element_size);
+    }
+}
+void vector_erase_multi(vector_t* erase_in, int at, int how_many)
+{
+    if (erase_in->size < at + how_many || at < 0 || how_many < 0) {
+        erase_in->error_handle = OUT_OF_BOUNDS;
+    }
+
+    for (int i = at; i <= erase_in->size - how_many; i++) {
+        memcpy(&(((char*)erase_in->data)[(i) * erase_in->element_size]), &(((char*)erase_in->data)[(i + how_many) * erase_in->element_size]), erase_in->element_size);
+    }
+
+    erase_in->size -= how_many;
+    erase_in->capacity -= how_many / 2;
+    erase_in->data = (int *) realloc(erase_in->data, erase_in->capacity * erase_in->element_size);
 }
 int search(vector_t* to_search, void* what)
 {

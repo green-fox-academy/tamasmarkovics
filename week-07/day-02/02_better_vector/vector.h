@@ -24,6 +24,7 @@ void destroy_vector(vector_t* to_destroy);
 void vector_insert(vector_t* insert_in, int at, void* this);
 int empty_vector(vector_t* to_empty);
 void vector_erase(vector_t* erase_in, int at);
+void vector_erase_multi(vector_t* erase_in, int at, int how_many);
 int search(vector_t* to_search, void* what);
 void shuffle(vector_t* to_shuffle);
 void element_swap(vector_t* swap_in, int this, int that);

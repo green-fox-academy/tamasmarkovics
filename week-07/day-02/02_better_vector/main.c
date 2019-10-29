@@ -41,6 +41,13 @@ int main()
     for (int i = 0; i < test.size; ++i) {
         printf("%d, ", *(int *)element_at(&test, i));
     }
+    printf("\nDelete %d -> %d\n", 4, 7);
+    vector_erase_multi(&test, 4, 4);
+    printf("size: %d, capacity: %d\n", test.size, test.capacity);
+
+    for (int i = 0; i < test.size; ++i) {
+        printf("%d, ", *(int *)element_at(&test, i));
+    }
 
     int temp = 141;
     printf("\n%d is at %d", temp, search(&test, &temp));
