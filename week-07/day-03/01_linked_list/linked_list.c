@@ -3,9 +3,10 @@
 #include <string.h>
 #include <stdio.h>
 
-linked_list_t* list_init(int data_size) {
+linked_list_t* list_init(enum data_type type_of_data) {
     linked_list_t* new_list = calloc(sizeof(linked_list_t), 1);
-    new_list->size_of_data = data_size;
+    new_list->size_of_data = get_data_size(type_of_data);
+    new_list->type_of_data = type_of_data;
     return new_list;
 }
 
@@ -135,5 +136,43 @@ void delete_all_value(linked_list_t* list, void* what)
     while (i != -1) {
         erase_at(list, i);
         i = search_list(list, what);
+    }
+}
+
+//NOT WORKING ATM
+void bubble_sort(linked_list_t* to_sort)
+{
+    node_t* fake_start = malloc(sizeof(node_t));
+    node_t* fake_start2 = malloc(sizeof(node_t));
+    fake_start->next = to_sort->head;
+
+    for (; fake_start->next; fake_start = fake_start->next) {
+        for (; fake_start2->next->next; fake_start2 = fake_start2->next) {
+            if (*(double *)fake_start2->next->data_ptr > *(double *)(fake_start2->next->next->data_ptr)) {
+                node_t* bigger = fake_start->next;             //address of the first
+                node_t* smaller = fake_start->next->next;       //address of the second
+                node_t* forthcoming = fake_start->next->next->next; //address of the next
+                fake_start->next = smaller;
+                smaller->next = bigger;
+                bigger->next = forthcoming;
+            }
+        }
+    }
+    free(fake_start);
+    free(fake_start2);
+}
+
+int get_data_size(enum data_type data) {
+    switch (data) {
+        case INT :
+            return sizeof(int);
+        case DOUBLE :
+            return sizeof(double);
+        case FLOAT :
+            return sizeof(float);
+        case CHAR :
+            return sizeof(char);
+        default:
+            return -1;
     }
 }

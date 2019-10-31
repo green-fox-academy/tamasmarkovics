@@ -1,6 +1,15 @@
 #ifndef INC_01_LINKED_LIST_LINKED_LIST_H
 #define INC_01_LINKED_LIST_LINKED_LIST_H
 
+#include <stdint.h>
+
+enum data_type {
+    INT,
+    DOUBLE,
+    FLOAT,
+    CHAR
+};
+
 typedef struct node {
     void* data_ptr;
     struct node* next;
@@ -9,19 +18,22 @@ typedef struct node {
 typedef struct linked_list {
     node_t* head;
     int size_of_data;
+    enum data_type type_of_data;
 } linked_list_t;
 
-linked_list_t* list_init(int data_size);
+int get_data_size(enum data_type data);
+linked_list_t* list_init(enum data_type type_of_data);
 void push_back(linked_list_t* list, void* data);
 void push_front(linked_list_t* list, void* data);
 void init_head(linked_list_t* list, void* data);  //only utility
 int get_size(linked_list_t* list);
-void print_list(void (*func)(), linked_list_t* list);
+void print_list(void (*func)(), linked_list_t* list);   //to be replaced, but fun!
 void erase_at(linked_list_t* list, int at);
 void delete(linked_list_t* list);
 void empty(linked_list_t* list);
 int search_list(linked_list_t* list, void* what);
 void delete_all_value(linked_list_t* list, void* what);
+void bubble_sort(linked_list_t* to_sort); //NOT WORKING ATM
 
 #endif //INC_01_LINKED_LIST_LINKED_LIST_H
 
