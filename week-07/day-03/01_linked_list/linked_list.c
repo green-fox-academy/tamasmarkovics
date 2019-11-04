@@ -176,3 +176,20 @@ int get_data_size(enum data_type data) {
             return -1;
     }
 }
+
+void print_int(void* what) {
+    printf("%d", *(int*)what);
+}
+void print_dbl(void* what) {
+    printf("%lf", *(double*)what);
+}
+void print_float(void* what) {
+    printf("%0.3f", *(float*)what);
+}
+void print_char(void* what) {
+    printf("%c", *(char*)what);
+}
+
+void printer(linked_list_t* list, void* what) {
+    (print_functions[list->type_of_data])(what);
+}
