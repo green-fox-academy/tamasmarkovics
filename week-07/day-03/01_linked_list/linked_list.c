@@ -3,167 +3,182 @@
 #include <string.h>
 #include <stdio.h>
 
-linked_list_t* list_init(enum data_type type_of_data) {
+linked_list_t* list_init(enum data_type type_of_data)
+{
     linked_list_t* new_list = calloc(sizeof(linked_list_t), 1);
     new_list->size_of_data = get_data_size(type_of_data);
     new_list->type_of_data = type_of_data;
     return new_list;
 }
 
-void init_head(linked_list_t* list, void* data)
+void init_head(linked_list_t* to_init, void* head_data)
 {
-    list->head = malloc(sizeof(node_t));
-    list->head->next = NULL;
-    list->head->data_ptr = malloc(list->size_of_data);
-    memcpy(list->head->data_ptr, data, list->size_of_data);
+    to_init->head = malloc(sizeof(node_t));
+    to_init->head->next = NULL;
+    to_init->head->data_ptr = malloc(to_init->size_of_data);
+    memcpy(to_init->head->data_ptr, head_data, to_init->size_of_data);
 }
 
-void push_back(linked_list_t* list, void* data)
+void push_back(linked_list_t* push_in, void* data_to_push)
 {
-    if (list->head) {
-        node_t *last = list->head;
-        while (last->next) last = last->next;
-        last->next = malloc(sizeof(node_t));
-        last->next->next = NULL;
-        last->next->data_ptr = malloc(list->size_of_data);
-        memcpy(last->next->data_ptr, data, list->size_of_data);
-    } else {
-        init_head(list, data);
+    if (push_in->head) {
+        node_t *last_node = push_in->head;
+        while (last_node->next) last_node = last_node->next;
+
+        last_node->next = malloc(sizeof(node_t));
+        last_node->next->next = NULL;
+
+        last_node->next->data_ptr = malloc(push_in->size_of_data);
+        memcpy(last_node->next->data_ptr, data_to_push, push_in->size_of_data);
+
+    } else init_head(push_in, data_to_push);
+}
+
+void push_front(linked_list_t* push_front_in, void* data_to_push)
+{
+    if (push_front_in->head) {
+        node_t* new_node = malloc(sizeof(node_t));
+
+        new_node->next = push_front_in->head;
+        new_node->data_ptr = malloc(push_front_in->size_of_data);
+        memcpy(new_node->data_ptr, data_to_push, push_front_in->size_of_data);
+
+        push_front_in->head = new_node;
+
+    } else init_head(push_front_in, data_to_push);
+}
+
+int get_size(linked_list_t* get_size_of)
+{
+    int size_of_list = 0;
+
+    node_t* last_node = get_size_of->head;
+    while (last_node) {
+        size_of_list++;
+        last_node = last_node->next;
     }
+
+    return size_of_list;
 }
 
-void push_front(linked_list_t* list, void* data)
+void print_list(linked_list_t* to_print)
 {
-    if (list->head) {
-        node_t* new = malloc(sizeof(node_t));
-        new->next = list->head;
-        new->data_ptr = malloc(list->size_of_data);
-        memcpy(new->data_ptr, data, list->size_of_data);
-        list->head = new;
-    } else {
-        init_head(list, data);
-    }
-}
+    node_t* it = to_print->head;
+    void (*print_func)(void*);
+    print_func = get_printer(to_print);
 
-int get_size(linked_list_t* list)
-{
-    node_t* last = list->head;
-    int size = 0;
-    while (last) {
-        size++;
-        last = last->next;
-    }
-    return size;
-}
-
-void print_list(void (*func)(), linked_list_t* list)
-{
-    node_t* it = list->head;
     while (it) {
-        func(it->data_ptr);
+        print_func(it->data_ptr);
         it = it->next;
         if(it) {
             printf(", ");
-        }
+        } else printf("\n");
     }
-    printf("\n");
 }
 
-void erase_at(linked_list_t* list, int at)
+void erase_at(linked_list_t* erase_in, int at_index)
 {
-    node_t* from = list->head;
-    if (at) {
-        for (int i = 1; i < at; i++) {
-            from = from->next;
+    if (!(at_index >= 0 && at_index < get_size(erase_in))) return;
+
+    node_t* erase_from = erase_in->head;
+
+    if (at_index != 0) {
+        for (int i = 1; i < at_index; i++) {
+            erase_from = erase_from->next;
         }
-        if (from->next) {
-            node_t *temp = from->next->next;
-            free(from->next->data_ptr);
-            free(from->next);
-            from->next = temp;
+        if (erase_from->next) {
+            node_t *temp = erase_from->next->next;
+            free(erase_from->next->data_ptr);
+            free(erase_from->next);
+            erase_from->next = temp;
         } else {
-            free(from->next->data_ptr);
-            free(from->next);
-            from->next = NULL;
+            free(erase_from->next->data_ptr);
+            free(erase_from->next);
+            erase_from->next = NULL;
         }
     } else {
-        from = from->next;
-        free(list->head->data_ptr);
-        free(list->head);
-        list->head = from;
+        erase_from = erase_from->next;
+        free(erase_in->head->data_ptr);
+        free(erase_in->head);
+        erase_in->head = erase_from;
     }
 
 }
 
-void delete(linked_list_t* list)
+void delete_head(linked_list_t* to_delete)
 {
-    node_t* temp = list->head->next;
-    free(list->head->data_ptr);
-    free(list->head);
-    list->head = temp;
+    node_t *temp = to_delete->head->next;
+
+    free(to_delete->head->data_ptr);
+    free(to_delete->head);
+
+    to_delete->head = temp;
 }
 
-
-void empty(linked_list_t* list)
+void empty(linked_list_t* to_empty)
 {
-    while (list->head) {
-        delete(list);
+    while (to_empty->head) {
+        delete_head(to_empty);
     }
 }
 
-
-int search_list(linked_list_t* list, void* what)
+int search_list(linked_list_t* search_in, void* for_what)
 {
-    node_t* at = list->head;
-    int index = 0;
+    node_t* at = search_in->head;
+    int index_of_target = 0;
+
     while (at) {
         int found = 1;
-        for (int j = 0; j < list->size_of_data; ++j) {
-            if (((char*)at->data_ptr)[j]  != ((char*)what)[j]) {
+        for (int j = 0; j < search_in->size_of_data; ++j) {
+            if (((char*)at->data_ptr)[j]  != ((char*)for_what)[j]) {
                 found = 0;
             }
         }
-        if (found) return index;
-        index++;
+        if (found) return index_of_target;
+        index_of_target++;
         at = at->next;
     }
+
     return -1;
 }
 
-void delete_all_value(linked_list_t* list, void* what)
+void delete_all_value(linked_list_t* delete_in, void* what)
 {
-    int i = search_list(list, what);
+    int i = search_list(delete_in, what);
     while (i != -1) {
-        erase_at(list, i);
-        i = search_list(list, what);
+        erase_at(delete_in, i);
+        i = search_list(delete_in, what);
     }
 }
-
-//NOT WORKING ATM
+/*
 void bubble_sort(linked_list_t* to_sort)
 {
     node_t* fake_start = malloc(sizeof(node_t));
-    node_t* fake_start2 = malloc(sizeof(node_t));
     fake_start->next = to_sort->head;
 
-    for (; fake_start->next; fake_start = fake_start->next) {
-        for (; fake_start2->next->next; fake_start2 = fake_start2->next) {
-            if (*(double *)fake_start2->next->data_ptr > *(double *)(fake_start2->next->next->data_ptr)) {
-                node_t* bigger = fake_start->next;             //address of the first
-                node_t* smaller = fake_start->next->next;       //address of the second
-                node_t* forthcoming = fake_start->next->next->next; //address of the next
-                fake_start->next = smaller;
-                smaller->next = bigger;
-                bigger->next = forthcoming;
-            }
-        }
-    }
-    free(fake_start);
-    free(fake_start2);
-}
+    int swapped;
 
-int get_data_size(enum data_type data) {
-    switch (data) {
+    if (to_sort->head == NULL) return;
+
+    do {
+        swapped = 0;
+        fake_start->next = to_sort->head;
+
+        while (fake_start->next != fake_start) {
+            if (fake_start->next->data_ptr > fake_start->next->next->data_ptr //NEED A COMPARE FUNC//) {
+                //NEED A SWAP FUNC//
+                //NEED A SWAP IN CASE ITS THE HEAD//
+            }
+            fake_start = fake_start->next;
+        }
+    } while (swapped);
+
+    free(fake_start);
+}
+*/
+
+int get_data_size(enum data_type type_of_data) {
+    switch (type_of_data) {
         case INT :
             return sizeof(int);
         case DOUBLE :
@@ -177,19 +192,30 @@ int get_data_size(enum data_type data) {
     }
 }
 
+void* get_printer(linked_list_t* list_to_print) {
+    switch (list_to_print->type_of_data) {
+        case INT :
+            return print_int;
+        case DOUBLE :
+            return print_dbl;
+        case FLOAT :
+            return print_float;
+        case CHAR :
+            return print_char;
+        default:
+            return NULL;
+    }
+}
+
 void print_int(void* what) {
     printf("%d", *(int*)what);
 }
 void print_dbl(void* what) {
-    printf("%lf", *(double*)what);
+    printf("%0.3lf", *(double*)what);
 }
 void print_float(void* what) {
     printf("%0.3f", *(float*)what);
 }
 void print_char(void* what) {
     printf("%c", *(char*)what);
-}
-
-void printer(linked_list_t* list, void* what) {
-    (print_functions[list->type_of_data])(what);
 }
