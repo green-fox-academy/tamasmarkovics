@@ -22,6 +22,7 @@ typedef struct linked_list {
 } linked_list_t;
 
 
+
 int get_data_size(enum data_type type_of_data);
 linked_list_t* list_init(enum data_type type_of_data);
 void push_back(linked_list_t* push_in, void* data_to_push);
@@ -33,14 +34,16 @@ void erase_at(linked_list_t* erase_in, int at_index);
 void delete_head(linked_list_t* to_delete);
 void empty(linked_list_t* to_empty);
 int search_list(linked_list_t* search_in, void* for_what);
-void delete_all_value(linked_list_t* delete_in, void* what);
+void delete_all_by_value(linked_list_t* delete_in, void* what);
 //void bubble_sort(linked_list_t* to_sort); //NOT WORKING ATM
 
-void print_int(void* what);
-void print_dbl(void* what);
-void print_float(void* what);
-void print_char(void* what);
+void print_int(void* int_to_print);
+void print_dbl(void* double_to_print);
+void print_float(void* float_to_print);
+void print_char(void* char_to_print);
 void* get_printer(linked_list_t* list_to_print);
+
+
 
 #endif //INC_01_LINKED_LIST_LINKED_LIST_H
 

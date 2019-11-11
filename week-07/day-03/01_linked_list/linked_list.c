@@ -40,7 +40,7 @@ void push_front(linked_list_t* push_front_in, void* data_to_push)
         node_t* new_node = malloc(sizeof(node_t));
 
         new_node->next = push_front_in->head;
-        new_node->data_ptr = malloc(push_front_in->size_of_data);
+            new_node->data_ptr = malloc(push_front_in->size_of_data);
         memcpy(new_node->data_ptr, data_to_push, push_front_in->size_of_data);
 
         push_front_in->head = new_node;
@@ -63,14 +63,16 @@ int get_size(linked_list_t* get_size_of)
 
 void print_list(linked_list_t* to_print)
 {
-    node_t* it = to_print->head;
+    node_t* current = to_print->head;
     void (*print_func)(void*);
     print_func = get_printer(to_print);
 
-    while (it) {
-        print_func(it->data_ptr);
-        it = it->next;
-        if(it) {
+    while (current) {
+        print_func(current->data_ptr);
+
+        current = current->next;
+
+        if(current) {
             printf(", ");
         } else printf("\n");
     }
@@ -142,7 +144,7 @@ int search_list(linked_list_t* search_in, void* for_what)
     return -1;
 }
 
-void delete_all_value(linked_list_t* delete_in, void* what)
+void delete_all_by_value(linked_list_t* delete_in, void* what)
 {
     int i = search_list(delete_in, what);
     while (i != -1) {
@@ -207,15 +209,15 @@ void* get_printer(linked_list_t* list_to_print) {
     }
 }
 
-void print_int(void* what) {
-    printf("%d", *(int*)what);
+void print_int(void* int_to_print) {
+    printf("%d", *(int*)int_to_print);
 }
-void print_dbl(void* what) {
-    printf("%0.3lf", *(double*)what);
+void print_dbl(void* double_to_print) {
+    printf("%0.3lf", *(double*)double_to_print);
 }
-void print_float(void* what) {
-    printf("%0.3f", *(float*)what);
+void print_float(void* float_to_print) {
+    printf("%0.3f", *(float*)float_to_print);
 }
-void print_char(void* what) {
-    printf("%c", *(char*)what);
+void print_char(void* char_to_print) {
+    printf("%c", *(char*)char_to_print);
 }
