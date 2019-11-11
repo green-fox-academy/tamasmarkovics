@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "04_timer_ovf_int", "04_timer_ovf_int\04_timer_ovf_int.cproj", "{2F6CB5B1-CAA6-441A-B45F-EDFD84D40BEA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F6CB5B1-CAA6-441A-B45F-EDFD84D40BEA}.Debug|AVR.ActiveCfg = Debug|AVR
+		{2F6CB5B1-CAA6-441A-B45F-EDFD84D40BEA}.Debug|AVR.Build.0 = Debug|AVR
+		{2F6CB5B1-CAA6-441A-B45F-EDFD84D40BEA}.Release|AVR.ActiveCfg = Release|AVR
+		{2F6CB5B1-CAA6-441A-B45F-EDFD84D40BEA}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
