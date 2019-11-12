@@ -168,3 +168,23 @@ fabric.properties
 !.vscode/extensions.json
 
 # End of https://www.gitignore.io/api/c,c++,code,clion
+
+### AtmelStudio ###
+
+#Build Directories
+[Dd]ebug/
+[Rr]elease/
+
+#Build Results
+*.o
+*.d
+*.eep
+*.elf
+*.hex
+*.map
+*.srec
+
+#User Specific Files
+*.atsuo
+
+# End of https://www.gitignore.io/api/atmelstudio
