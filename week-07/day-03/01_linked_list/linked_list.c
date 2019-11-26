@@ -61,22 +61,6 @@ int get_size(linked_list_t* get_size_of)
     return size_of_list;
 }
 
-void print_list(linked_list_t* to_print)
-{
-    node_t* current = to_print->head;
-    void (*print_func)(void*);
-    print_func = get_printer(to_print);
-
-    while (current) {
-        print_func(current->data_ptr);
-
-        current = current->next;
-
-        if(current) {
-            printf(", ");
-        } else printf("\n");
-    }
-}
 
 void erase_at(linked_list_t* erase_in, int at_index)
 {
@@ -152,32 +136,6 @@ void delete_all_by_value(linked_list_t* delete_in, void* what)
         i = search_list(delete_in, what);
     }
 }
-/*
-void bubble_sort(linked_list_t* to_sort)
-{
-    node_t* fake_start = malloc(sizeof(node_t));
-    fake_start->next = to_sort->head;
-
-    int swapped;
-
-    if (to_sort->head == NULL) return;
-
-    do {
-        swapped = 0;
-        fake_start->next = to_sort->head;
-
-        while (fake_start->next != fake_start) {
-            if (fake_start->next->data_ptr > fake_start->next->next->data_ptr //NEED A COMPARE FUNC//) {
-                //NEED A SWAP FUNC//
-                //NEED A SWAP IN CASE ITS THE HEAD//
-            }
-            fake_start = fake_start->next;
-        }
-    } while (swapped);
-
-    free(fake_start);
-}
-*/
 
 int get_data_size(enum data_type type_of_data) {
     switch (type_of_data) {
@@ -190,9 +148,11 @@ int get_data_size(enum data_type type_of_data) {
         case CHAR :
             return sizeof(char);
         default:
-            return -1;
+            return 0;
     }
 }
+
+//****  PRINT UTILITY  ****//
 
 void* get_printer(linked_list_t* list_to_print) {
     switch (list_to_print->type_of_data) {
@@ -205,7 +165,7 @@ void* get_printer(linked_list_t* list_to_print) {
         case CHAR :
             return print_char;
         default:
-            return NULL;
+            return print_char;
     }
 }
 
@@ -216,8 +176,111 @@ void print_dbl(void* double_to_print) {
     printf("%0.3lf", *(double*)double_to_print);
 }
 void print_float(void* float_to_print) {
-    printf("%0.3f", *(float*)float_to_print);
+    printf("%0.2f", *(float*)float_to_print);
 }
 void print_char(void* char_to_print) {
     printf("%c", *(char*)char_to_print);
+}
+
+void print_list(linked_list_t* to_print)
+{
+    node_t* current = to_print->head;
+    void (*print_func)(void*);
+    print_func = get_printer(to_print);
+
+    while (current) {
+        print_func(current->data_ptr);
+
+        current = current->next;
+
+        if(current) {
+            printf(", ");
+        } else printf("\n");
+    }
+}
+
+//****  COMPARE  ****//
+int compare_void(linked_list_t* compare_in, node_t* first)
+{
+    int (*compare_func)(void*);
+    compare_func = get_comparer(compare_in);
+    return compare_func(first);
+}
+
+void* get_comparer(linked_list_t* compare_in)
+{
+    switch (compare_in->type_of_data) {
+        case INT :
+            return compare_int;
+        case DOUBLE :
+            return compare_dbl;
+        case FLOAT :
+            return compare_float;
+        case CHAR :
+            return compare_char;
+        default:
+            return compare_char;
+    }
+}
+
+int compare_int(node_t* first)
+{
+    return *(int*)(first->data_ptr) > *(int*)(first->next->data_ptr);
+}
+
+int compare_dbl(node_t* first)
+{
+    return *(double*)(first->data_ptr) > *(double*)(first->next->data_ptr);
+}
+
+int compare_float(node_t* first)
+{
+    return *(float*)(first->data_ptr) > *(float*)(first->next->data_ptr);
+}
+
+int compare_char(node_t* first)
+{
+    return *(char*)(first->data_ptr) > *(char*)(first->next->data_ptr);
+}
+
+//****  SWAP  ****//
+void swap_address(linked_list_t* swap_in, node_t* first)
+{
+    //SWAPPING THE HEAD
+    if (swap_in->head == first) {
+        node_t* one = first;
+        node_t* two = first->next;
+        swap_in->head = two;
+        one->next = two->next;
+        two->next = one;
+        return;
+    }
+
+    //SWAPPING ANYTHING ELSE
+    node_t* it = swap_in->head;
+    while (it->next != first) {
+        it = it->next;
+    }
+    node_t* one = first;
+    node_t* two = first->next;
+    it->next = two;
+    one->next = two->next;
+    two->next = one;
+}
+
+void bubble_sort(linked_list_t* to_sort)
+{
+    int swapped = 0;
+    node_t* last = NULL;
+    do {
+        swapped = 0;
+        node_t* ptr = to_sort->head;
+        while (ptr->next != last) {
+            if (compare_void(to_sort, ptr)) {
+                swap_address(to_sort, ptr);
+                swapped = 1;
+            } else {ptr = ptr->next;}
+        }
+        last = ptr;
+    } while (swapped);
 }
