@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 
+
 void init_vector(vector_t* to_init, int init_capacity, int size_of_element)
 {
     if (init_capacity < 1 || size_of_element < 1) {
@@ -153,7 +154,7 @@ void shuffle(vector_t* to_shuffle)
 void unique(vector_t* make_unique) {
     for (int i = make_unique->size - 1; i >= 0; --i) {
         int index = search(make_unique, element_at(make_unique, i));
-        //i-- is not necessary, since because of the backward iterating
+        //i-- is not necessary, because of the backward iteration
         if (index != -1 && index != i) vector_erase(make_unique, index);
     }
 }
