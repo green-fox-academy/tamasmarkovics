@@ -8,10 +8,16 @@ typedef struct film {
     int year;
 } film_t;
 
+typedef struct yearly_inc {
+    int year;
+    long long income;
+} yearly_inc_t;
+
 int get_size();
 film_t* fill_struct();
-
-
+int get_unique_year(film_t* stat);
+yearly_inc_t* get_yearly_stat(film_t* stat);
+int getbestyear(yearly_inc_t* yearly, int years);
 
 int main()
 {
@@ -19,6 +25,19 @@ int main()
     for (int i = 0; i < get_size(); i++) {
         printf("%s\t%lld\t%d\n", stats[i].name, stats[i].income, stats[i].year);
     }
+
+    yearly_inc_t* yearly_stats = get_yearly_stat(stats);
+    for (int k = 0; k < get_unique_year(stats); ++k) {
+        printf("%d %lld\n", yearly_stats[k].year, yearly_stats[k].income);
+    }
+
+    printf("The best year was %d\n", getbestyear(yearly_stats, get_unique_year(stats)));
+
+    for (int j = 0; j < get_size(); ++j) {
+        free(stats[j].name);
+    }
+    free(stats);
+    free(yearly_stats);
     return 0;
 }
 
@@ -64,4 +83,57 @@ film_t* fill_struct()
     }
     fclose(fptr);
     return temp_stats;
+}
+
+int get_unique_year(film_t* stat)
+{
+    int sum = 0;
+    for (int i = 0; i < get_size(); i++) {
+        int match = 0;
+        for (int j = 0; j < i; j++) {
+            if (stat[i].year == stat[j].year) {
+                match++;
+            }
+        }
+        if (match == 0) {
+            sum++;
+        }
+    }
+    return sum;
+}
+
+yearly_inc_t* get_yearly_stat(film_t* stat)
+{
+    int num = get_unique_year(stat);
+    yearly_inc_t* yearly_stat = calloc(num, sizeof(yearly_inc_t));
+    int years = 0;
+    for (int i = 0; i < get_size(); ++i) {
+        int found = 0;
+        for (int j = 0; j < years && !found; ++j) {
+            if (stat[i].year == yearly_stat[j].year) {
+                yearly_stat[j].income += stat[i].income;
+                found++;
+            }
+        }
+        if (!found) {
+            yearly_stat[years].year = stat[i].year;
+            yearly_stat[years].income = stat[i].income;
+            years++;
+        }
+    }
+    return yearly_stat;
+}
+
+int getbestyear(yearly_inc_t* yearly, int years)
+{
+    long long max = 0;
+    int year = 0;
+    for (int i = 0; i < years; ++i) {
+        if (max < yearly[i].income) {
+            max = yearly[i].income;
+            year = yearly[i].year;
+        }
+    }
+
+    return year;
 }
