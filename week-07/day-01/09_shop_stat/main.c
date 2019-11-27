@@ -4,8 +4,8 @@
 
 ////How many customers the shop had that day? - DONE
 ////What was the time with the most traffic?(Sum of incoimng and outgoing customers) - DONE
-////When the shop needs the most cashiers?(When was the time the most customer was in the store)
-////Does it worth to keep the shop open in the last 2 hours? It's worth it if at least 5% of the total customers was in the store at the last 2 hours.
+////When the shop needs the most cashiers?(When was the time the most customer was in the store) - FFS
+////Does it worth to keep the shop open in the last 2 hours? It's worth it if at least 5% of the total customers was in the store at the last 2 hours. - DONE
 
 typedef struct hourly {
     char timezone[12];
@@ -16,6 +16,8 @@ int get_size();
 hour_t* fill_struct();
 int get_customers(hour_t* stat_struct, int size);
 char* most_frequented_hour(hour_t* stat_struct, int size);
+int last_2_hrs(hour_t* stat_struct, int size);
+int is_it_worth(hour_t* stat_struct, int size);
 
 int main() {
 
@@ -24,11 +26,13 @@ int main() {
 
     printf("%d has visited the shop\n", get_customers(opening_stats, hrs));
     printf("Biggest traffic in %s\n", most_frequented_hour(opening_stats, hrs));
-    //printf("Visits in last 2 hrs is %d\n", in_last_two);
+    printf("Visits in last 2 hrs is %d, it %s worth keeping it open\n", last_2_hrs(opening_stats, hrs), is_it_worth(opening_stats, hrs) ? "is" : "not");
+
     for (int e = 0; e < hrs; e++) {
         free(opening_stats[e].stats);
     }
     free(opening_stats);
+
     return 0;
 }
 
@@ -77,7 +81,6 @@ int get_customers(hour_t* stat_struct, int size)
     free(temp);
     return visits;
 }
-
 char* most_frequented_hour(hour_t* stat_struct, int size)
 {
     int max = 0;
@@ -100,4 +103,22 @@ char* most_frequented_hour(hour_t* stat_struct, int size)
     }
     free(temp);
     return best_hr;
+}
+int last_2_hrs(hour_t* stat_struct, int size)
+{
+    int visits = 0;
+    char* temp = malloc(1);
+    for (int i = size - 2; i < size; i++) {
+        temp = realloc(temp, (strlen(stat_struct[i].stats) + 1) * sizeof(char));
+        memcpy(temp, stat_struct[i].stats, strlen(stat_struct[i].stats) + 1);
+        for (char *p = strtok(temp, " "); p != NULL; p = strtok(NULL, " ")) {
+            visits += atoi(p);
+        }
+    }
+    free(temp);
+    return visits;
+}
+int is_it_worth(hour_t* stat_struct, int size)
+{
+    return (last_2_hrs(stat_struct, size) * 100 / get_customers(stat_struct, size) * 100 >= 5);
 }
