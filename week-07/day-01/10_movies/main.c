@@ -115,11 +115,11 @@ yearly_income_t* get_yearly_stat(film_t* statistics)
 {
     int number_of_years = get_unique_year(statistics);
     yearly_income_t* yearly_stat = calloc(number_of_years, sizeof(yearly_income_t));
-    int years = 0;
+    int years_found = 0;
 
     for (int i = 0; i < get_movies_number(); ++i) {
         int found = 0;
-        for (int j = 0; j < years && !found; ++j) {
+        for (int j = 0; j < years_found && !found; ++j) {
             if (statistics[i].year == yearly_stat[j].year) {
                 yearly_stat[j].income += statistics[i].income;
                 found++;
@@ -127,9 +127,9 @@ yearly_income_t* get_yearly_stat(film_t* statistics)
         }
 
         if (!found) {
-            yearly_stat[years].year = statistics[i].year;
-            yearly_stat[years].income = statistics[i].income;
-            years++;
+            yearly_stat[years_found].year = statistics[i].year;
+            yearly_stat[years_found].income = statistics[i].income;
+            years_found++;
         }
     }
 
