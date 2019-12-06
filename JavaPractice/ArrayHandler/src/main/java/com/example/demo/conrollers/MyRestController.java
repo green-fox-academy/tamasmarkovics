@@ -8,9 +8,7 @@ import com.example.demo.services.TranslatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 
@@ -55,6 +53,17 @@ public class MyRestController {
             return ResponseEntity.status(HttpStatus.OK).body(translatorService.translatorResponse(data));
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.OK).body(new ErrorDTO(e.getMessage()));
+        }
+    }
+
+    @GetMapping(value = "/log")
+    public ResponseEntity logger(@RequestParam(name = "count", required = false) Integer count,
+                                 @RequestParam(name = "page", required = false) Integer page,
+                                 @RequestParam(name = "q", required = false) String q) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(loggingService.getLogEntriesWithCount(count, page, q));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(new ErrorDTO(e.getMessage()));
         }
     }
 

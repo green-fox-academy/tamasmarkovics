@@ -2,10 +2,7 @@ package com.example.demo.models.entities;
 
 import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -41,5 +38,13 @@ public class LogEntry {
     public LogEntry(String endpoint, String data) {
         this.endpoint = endpoint;
         this.data = data;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
     }
 }
