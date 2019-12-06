@@ -1,6 +1,6 @@
 package com.example.demo.models.DTOs;
 
-public class SithErrorDTO {
+public class SithErrorDTO implements ResponseDTO {
 
     private String sithMessage;
 

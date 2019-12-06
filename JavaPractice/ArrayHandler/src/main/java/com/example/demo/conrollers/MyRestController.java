@@ -29,7 +29,7 @@ public class MyRestController {
     }
 
     @PostMapping(value = "/arrays")
-    public ResponseEntity arrayController(@RequestBody(required = false) RequestDTO data) {
+    public ResponseEntity<ResponseDTO> arrayController(@RequestBody(required = false) RequestDTO data) {
         try {
             this.loggingService.save(data.getWhat(), Arrays.toString(data.getNumbers()));
             return ResponseEntity.status(HttpStatus.OK).body(handlerService.arrayHandler(data));
@@ -39,7 +39,7 @@ public class MyRestController {
     }
 
     @PostMapping(value = "/sith")
-    public ResponseEntity sithController(@RequestBody(required = false) SithRequestDTO sithRequestDTO) {
+    public ResponseEntity<ResponseDTO> sithController(@RequestBody(required = false) SithRequestDTO sithRequestDTO) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(sithService.sithResponse(sithRequestDTO));
         } catch (IllegalArgumentException e) {
@@ -48,7 +48,7 @@ public class MyRestController {
     }
 
     @PostMapping(value = "/translate")
-    public ResponseEntity translator(@RequestBody(required = false) TranslatorRequestDTO data) {
+    public ResponseEntity<ResponseDTO> translator(@RequestBody(required = false) TranslatorRequestDTO data) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(translatorService.translatorResponse(data));
         } catch (IllegalArgumentException e) {
@@ -57,9 +57,9 @@ public class MyRestController {
     }
 
     @GetMapping(value = "/log")
-    public ResponseEntity logger(@RequestParam(name = "count", required = false) Integer count,
-                                 @RequestParam(name = "page", required = false) Integer page,
-                                 @RequestParam(name = "q", required = false) String q) {
+    public ResponseEntity<ResponseDTO> logger(@RequestParam(name = "count", required = false) Integer count,
+                                              @RequestParam(name = "page", required = false) Integer page,
+                                              @RequestParam(name = "q", required = false) String q) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(loggingService.getLogEntriesWithCount(count, page, q));
         } catch (IllegalArgumentException e) {

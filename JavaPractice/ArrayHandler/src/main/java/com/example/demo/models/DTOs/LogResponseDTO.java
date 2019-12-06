@@ -4,7 +4,7 @@ import com.example.demo.models.entities.LogEntry;
 
 import java.util.List;
 
-public class LogResponseDTO {
+public class LogResponseDTO implements ResponseDTO{
     private List<LogEntry> entries;
     private int entry_count;
 

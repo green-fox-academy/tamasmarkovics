@@ -1,6 +1,6 @@
 package com.example.demo.models.DTOs;
 
-public class TranslatorResponseDTO {
+public class TranslatorResponseDTO implements ResponseDTO{
     private String translated;
     private String lang;
 

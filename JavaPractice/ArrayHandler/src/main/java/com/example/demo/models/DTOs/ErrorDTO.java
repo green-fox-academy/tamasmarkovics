@@ -1,6 +1,6 @@
 package com.example.demo.models.DTOs;
 
-public class ErrorDTO {
+public class ErrorDTO implements ResponseDTO{
     private String error;
 
     public String getError() {

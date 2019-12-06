@@ -1,6 +1,6 @@
 package com.example.demo.models.DTOs;
 
-public class SithResponseOTD {
+public class SithResponseOTD implements ResponseDTO {
     private String sith_text;
 
     public SithResponseOTD() {
