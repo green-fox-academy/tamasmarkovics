@@ -1,12 +1,10 @@
 package com.example.demo.conrollers;
 
-import com.example.demo.models.DTOs.ErrorDTO;
-import com.example.demo.models.DTOs.RequestDTO;
-import com.example.demo.models.DTOs.SithErrorDTO;
-import com.example.demo.models.DTOs.SithRequestDTO;
+import com.example.demo.models.DTOs.*;
 import com.example.demo.services.HandlerService;
 import com.example.demo.services.LoggingService;
 import com.example.demo.services.SithService;
+import com.example.demo.services.TranslatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,18 +15,20 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Arrays;
 
 @RestController
-public class HandlerController {
+public class MyRestController {
     private HandlerService handlerService;
     private LoggingService loggingService;
     private SithService sithService;
+    private TranslatorService translatorService;
 
     @Autowired
-    public HandlerController(HandlerService handlerService, LoggingService loggingService, SithService sithService) {
+    public MyRestController(HandlerService handlerService, LoggingService loggingService,
+                            SithService sithService, TranslatorService translatorService) {
         this.handlerService = handlerService;
         this.loggingService = loggingService;
         this.sithService = sithService;
+        this.translatorService = translatorService;
     }
-
 
     @PostMapping(value = "/arrays")
     public ResponseEntity arrayController(@RequestBody(required = false) RequestDTO data) {
@@ -46,6 +46,15 @@ public class HandlerController {
             return ResponseEntity.status(HttpStatus.OK).body(sithService.sithResponse(sithRequestDTO));
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.OK).body(new SithErrorDTO(e.getMessage()));
+        }
+    }
+
+    @PostMapping(value = "/translate")
+    public ResponseEntity translator(@RequestBody(required = false) TranslatorRequestDTO data) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(translatorService.translatorResponse(data));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.OK).body(new ErrorDTO(e.getMessage()));
         }
     }
 
